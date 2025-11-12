@@ -64,8 +64,8 @@ class AVLTree:
         # --- Caso 3: Rotação Dupla Esquerda-Direita (LR) ---
         # Fator Balanceamento > 1 (árvore pesada à esquerda) e a chave foi inserida
         # na sub-árvore direita (key > node.leftChild.key)
-        if balance > 1 and key > node.rightChild.key:
-            node.lefChild = self._left_rotate(node.leftChild) # Rotacão Esquerda no filho
+        if balance > 1 and key > node.leftChild.key:
+            node.leftChild = self._left_rotate(node.leftChild) # Rotacão Esquerda no filho
             return self._right_rotate(node)                   # Rotação Direita no pai
         
         # --- Caso 4: Rotação Dupla Direita-Esquerda (RL) ---
@@ -130,7 +130,7 @@ class AVLTree:
         # Retorna a nova raiz da sub-árvore
         return y
     
-    def _left_rotata(self, z):
+    def _left_rotate(self, z):
         """
         SRHP-04: Implementar Rotação Simples Esquerda (RR)
         Executa uma rotação à esquerda no nó 'z' (o nó desbalanceado).
@@ -144,7 +144,7 @@ class AVLTree:
              T3 T4 (T4 não existe neste caso)
         """
         print("Executando Rotação Esquerda (RR)")
-        y = z.rigthChild
+        y = z.rightChild
         T2 = y.leftChild
 
         # Executa a rotação
