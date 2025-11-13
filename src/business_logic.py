@@ -121,3 +121,36 @@ class SistemaRecomendacao:
         complexidade Olog n
         """
         return self.arvore_categorias.find(nome_categoria)
+    
+    def listar_produtos_categoria(self, nome_categoria):
+        """
+        lista todos os produtos de uma categoria especifica
+        
+        args
+            nome_categoria (str) nome da categoria
+        
+        returns
+            list lista de produtos da categoria
+        """
+        categoria = self.arvore_categorias.find(nome_categoria)
+        
+        if categoria is None:
+            print(f"categoria {nome_categoria} nao encontrada")
+            return []
+        
+        if len(categoria.produtos) == 0:
+            print(f"a categoria {nome_categoria} nao tem produtos cadastrados")
+            return []
+        
+        print(f"\nprodutos da categoria {nome_categoria}")
+        print(f"descricao {categoria.descricao}")
+        print(f"total de produtos {len(categoria.produtos)}\n")
+        
+        for produto in categoria.produtos:
+            print(f"{produto.nome} id {produto.id}")
+            print(f"preco r$ {produto.preco:.2f} avaliacao {int(produto.avaliacao)} estrelas")
+            if produto.descricao:
+                print(f"{produto.descricao}")
+            print()
+        
+        return categoria.produtos
