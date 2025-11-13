@@ -154,3 +154,63 @@ class SistemaRecomendacao:
             print()
         
         return categoria.produtos
+    
+    def imprimir_hierarquia(self):
+        """
+        imprime a arvore de categorias de forma hierarquica usando travessia preordem
+        
+        travessia preordem raiz esquerda direita
+        isso mostra a hierarquia de forma natural pai antes dos filhos
+        
+        complexidade On visita todos os nos uma vez
+        """
+        print("\n" + "="*60)
+        print("HIERARQUIA DE CATEGORIAS")
+        print("="*60 + "\n")
+        
+        if self.arvore_categorias.root is None:
+            print("sistema vazio nenhuma categoria cadastrada")
+            return
+        
+        # chama a funcao recursiva de travessia
+        self._imprimir_pre_ordem(self.arvore_categorias.root, nivel=0, prefixo="")
+        
+        print("\n" + "="*60)
+    
+    def _imprimir_pre_ordem(self, node, nivel=0, prefixo=""):
+        """
+        funcao recursiva auxiliar para travessia preordem com formatacao hierarquica
+        
+        args
+            node no atual da arvore
+            nivel nivel de profundidade para indentacao
+            prefixo prefixo visual para mostrar a estrutura da arvore
+        
+        recursividade esta funcao chama a si mesma para percorrer a arvore
+        """
+        if node is None:
+            return
+        
+        # determina o simbolo de conexao
+        if nivel == 0:
+            conector = ">"
+        else:
+            conector = "├──" if prefixo else "└──"
+        
+        # imprime o no atual preordem visita a raiz primeiro
+        indentacao = "   " * nivel
+        categoria = node.data
+        
+        print(f"{indentacao}{conector} {categoria.nome}")
+        print(f"{indentacao}    {len(categoria.produtos)} produtos | Altura: {node.height}")
+        
+        if categoria.descricao:
+            print(f"{indentacao}    {categoria.descricao}")
+        
+        # recursao visita subarvore esquerda
+        if node.leftChild:
+            self._imprimir_pre_ordem(node.leftChild, nivel + 1, "├──")
+        
+        # recursao visita subarvore direita
+        if node.rightChild:
+            self._imprimir_pre_ordem(node.rightChild, nivel + 1, "└──")
