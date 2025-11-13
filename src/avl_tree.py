@@ -155,7 +155,7 @@ class AVLTree:
         z.height = 1 + max(self._get_height(z.leftChild),
                            self._get_height(z.rightChild))
         y.height = 1 + max(self._get_height(y.leftChild),
-                           self._get_height(z.rightChild))
+                           self._get_height(y.rightChild))
         # Retorna a nova raiz da sub-árvore
         return y
     
@@ -164,7 +164,7 @@ class AVLTree:
         Função pública de remoção.
         Chama a função recursiva privada para remover da raiz.
         """
-        self.root = self._delete_reccursive(self.root, key)
+        self.root = self._delete_recursive(self.root, key)
 
     def _delete_recursive(self, node, key):
         """
@@ -208,47 +208,47 @@ class AVLTree:
             # (pois o sucessor tem no máximo 1 filho à direita).
             node.rightChild = self._delete_recursive(node.rightChild, temp.key)
 
-            # Se a árvore ficou vazia após a remoção (só tinha 1 nó)
-            if not node:
-                return node
-            
-            # --- Fase 2: Rebalancemento (Bottom-Up) ---
-            # Este código é executado "no caminho de volta" da recursão.
-
-            # 1. Atualizar a Altura do nó atual
-            node.height = 1 + max(self._get_height(node.leftChild),
-                                self._get_height(node.rightChild))
-            
-            # 2. Calcular o Fator de Balanceamento (FB)
-            balance = self._get_balance(node)
-
-            # 3. Rebalancemento (4 Casos)
-
-            # ---- Caso 1: Rotação Simples Direita (LL) ----
-            #FB > 1 (pesado à esquerda) e FBdo filho esquerdo >= 0
-            if balance > 1 and self._get_balance(node.leftChild) >= 0:
-                return self._right_rotate(node)
-            
-            # --- Caso 2: Rotação Simples Esquerda (RR) ----
-            # FB < -1 (pesado à direita) e FB do filho direito <= 0
-            if balance < -1 and self._get_balance(node.rightChild) <= 0:
-                return self._left_rotate(node)
-            
-            # --- Caso 3: Rotação Dupla Esquerda-Direita (LR) ---
-            # FB > 1 (pesado à esquerda) e FB do filho esquerdo < 0
-            if balance > 1 and self._get_balance(node.leftChild) < 0:
-                node.leftChild = self._left_rotate(node.leftChild)
-                return self._right_rotate(node)
-            
-            # --- Caso 4: Rotação Dupla Direita-Esquerda (RL) ---
-            # FB < -1 (pesado à direita) e FB do filho direito > 0 
-            if balance < -1 and self._get_balance(node.rightChild) > 0:
-                node.rightChild = self._right_rotate(node.rightChild)
-                return self._left_rotate(node)
-            
-            # Retorna o nó (potencialmente nova raiz da sub-árvore)
+        # Se a árvore ficou vazia após a remoção (só tinha 1 nó)
+        if not node:
             return node
+            
+        # --- Fase 2: Rebalancemento (Bottom-Up) ---
+        # Este código é executado "no caminho de volta" da recursão.
+
+        # 1. Atualizar a Altura do nó atual
+        node.height = 1 + max(self._get_height(node.leftChild),
+                            self._get_height(node.rightChild))
         
+        # 2. Calcular o Fator de Balanceamento (FB)
+        balance = self._get_balance(node)
+
+        # 3. Rebalancemento (4 Casos)
+
+        # ---- Caso 1: Rotação Simples Direita (LL) ----
+        #FB > 1 (pesado à esquerda) e FBdo filho esquerdo >= 0
+        if balance > 1 and self._get_balance(node.leftChild) >= 0:
+            return self._right_rotate(node)
+        
+        # --- Caso 2: Rotação Simples Esquerda (RR) ----
+        # FB < -1 (pesado à direita) e FB do filho direito <= 0
+        if balance < -1 and self._get_balance(node.rightChild) <= 0:
+            return self._left_rotate(node)
+        
+        # --- Caso 3: Rotação Dupla Esquerda-Direita (LR) ---
+        # FB > 1 (pesado à esquerda) e FB do filho esquerdo < 0
+        if balance > 1 and self._get_balance(node.leftChild) < 0:
+            node.leftChild = self._left_rotate(node.leftChild)
+            return self._right_rotate(node)
+        
+        # --- Caso 4: Rotação Dupla Direita-Esquerda (RL) ---
+        # FB < -1 (pesado à direita) e FB do filho direito > 0 
+        if balance < -1 and self._get_balance(node.rightChild) > 0:
+            node.rightChild = self._right_rotate(node.rightChild)
+            return self._left_rotate(node)
+
+        # Retorna o nó (potencialmente nova raiz da sub-árvore)
+        return node
+
     def _get_min_value_node(self, node):
         """
         Função auxiliar para encontrar o nó com menor valor (sucessor in-order)
