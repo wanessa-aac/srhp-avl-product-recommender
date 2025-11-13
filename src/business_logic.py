@@ -214,3 +214,25 @@ class SistemaRecomendacao:
         # recursao visita subarvore direita
         if node.rightChild:
             self._imprimir_pre_ordem(node.rightChild, nivel + 1, "└──")
+    
+    def _buscar_node(self, node, chave):
+        """
+        busca recursiva que retorna o NO nao apenas o data da AVL
+        necessario para iniciar a travessia da subarvore
+        
+        args
+            node no atual
+            chave chave a ser buscada
+        
+        returns
+            AVLNode no encontrado ou None
+        """
+        if node is None:
+            return None
+        
+        if chave == node.key:
+            return node
+        elif chave < node.key:
+            return self._buscar_node(node.leftChild, chave)
+        else:
+            return self._buscar_node(node.rightChild, chave)
