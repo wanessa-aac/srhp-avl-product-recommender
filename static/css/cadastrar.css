@@ -1,0 +1,219 @@
+/* pagina de cadastro */
+.cadastro-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 40px;
+    padding-bottom: 210px; 
+    box-sizing: border-box;
+}
+
+/* abas fixas embaixo */
+.tabs-container {
+    display: inline-flex;
+    gap: 0;
+    padding: 5px;
+    background: #E9E9E9;
+    border-radius: 30px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.tabs-container.hidden {
+    display: none;
+}
+
+.tab-button {
+    width: 224px;
+    height: 110px;
+    border: none;
+    border-radius: 26px;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+
+
+.tab-button.categoria {
+    background: #EBE175;
+    color: #7E7615;
+}
+
+.tab-button.produto {
+    background: #8DD4E4;
+    color: #195663;
+}
+
+.tab-button:hover {
+    opacity: 0.95;
+}
+
+.tab-button:active {
+    transform: scale(0.98);
+}
+
+/* container do formulario */
+.form-container {
+    position: absolute;
+    bottom: 210px;
+    padding: 20px 15px;
+    background: #E9E9E9;
+    border-radius: 30px;
+    width: 457px;
+    box-sizing: border-box;
+}
+
+/* lista de cadastrados */
+.cadastrados-container {
+    position: absolute;
+    bottom: 210px;
+    width: 100%;
+    max-width: 800px;
+    display: none;
+}
+
+.cadastrados-header {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #333;
+    color: #333;
+}
+
+.cadastrados-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cadastrado-item {
+    padding: 20px;
+    margin: 10px 0;
+    background: #F5F5F5;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.cadastrado-item:hover {
+    background: #EEE;
+    transform: translateX(5px);
+}
+
+.cadastrado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cadastrado-nome {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.cadastrado-info {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* header do formulario */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-header-text {
+    color: #B8B8B8;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+/* campos do formulario */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    color: #222222;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.form-input,
+.form-select {
+    height: 45px;
+    background: #D3D3D3;
+    border-radius: 14px;
+    border: none;
+    padding: 0 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #222222;
+    outline: none;
+}
+
+.form-textarea {
+    height: 78px;
+    background: #D3D3D3;
+    border-radius: 14px;
+    border: none;
+    padding: 12px 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #222222;
+    outline: none;
+    resize: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #999;
+}
+
+/* botao cadastrar */
+.btn-submit {
+    width: 100%;
+    height: 45px;
+    background: #EBE175;
+    border-radius: 31px;
+    border: none;
+    color: #7E7615;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.btn-submit.produto {
+    background: #8DD4E4;
+    color: #195663;
+}

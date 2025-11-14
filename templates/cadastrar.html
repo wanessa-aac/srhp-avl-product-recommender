@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar - SRHP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/cadastrar.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="cadastro-page">
+    <!-- lista de cadastrados -->
+    <div id="cadastradosContainer" class="cadastrados-container" style="display: none;">
+        <!-- lista sera inserida aqui -->
+    </div>
+    
+    <!-- formulario aparece aqui quando uma aba for clicada -->
+    <div id="formContainer" class="form-container" style="display: none;">
+        <!-- conteudo do formulario sera inserido aqui -->
+    </div>
+    
+    <!-- abas fixas embaixo -->
+    <div class="tabs-container">
+        <button class="tab-button categoria" data-tab="categoria">categoria</button>
+        <button class="tab-button produto" data-tab="produto">produto</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', path='/js/cadastrar.js') }}"></script>
+{% endblock %}
