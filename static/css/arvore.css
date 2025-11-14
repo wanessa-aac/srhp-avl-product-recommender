@@ -1,0 +1,204 @@
+/* estilos para pagina da arvore */
+
+.page-title {
+    position: absolute;
+    right: 60px;
+    top: 40px;
+    color: #2B2B2B;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.tree-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px); /* espaco para o menu inferior */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+/* no da arvore */
+.tree-node {
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(135deg, #8B5E83 0%, #6B4E73 100%);
+    border-radius: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* efeito de pilha de papel atras do no */
+.tree-node::before,
+.tree-node::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.tree-node::before {
+    top: -8px;
+    left: -8px;
+    opacity: 0.6;
+}
+
+.tree-node::after {
+    top: -16px;
+    left: -16px;
+    opacity: 0.3;
+}
+
+/* animacao de entrada */
+.tree-node.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* tamanhos e cores por nivel */
+.tree-node.level-0 {
+    background: linear-gradient(135deg, #9B6E93 0%, #7B5E83 100%);
+    width: 350px;
+    height: 200px;
+    font-size: 1.3em;
+}
+
+.tree-node.level-1 {
+    background: linear-gradient(135deg, #8B5E83 0%, #6B4E73 100%);
+    width: 240px;
+    height: 140px;
+    font-size: 1em;
+}
+
+.tree-node.level-2 {
+    background: linear-gradient(135deg, #7B5E83 0%, #5B4E73 100%);
+    width: 200px;
+    height: 120px;
+    font-size: 0.95em;
+}
+
+.tree-node.level-3 {
+    background: linear-gradient(135deg, #6B4E73 0%, #4B3E63 100%);
+    width: 180px;
+    height: 110px;
+    font-size: 0.9em;
+}
+
+/* remover efeito pilha dos nos filhos pequenos */
+.tree-node.level-1::before,
+.tree-node.level-1::after,
+.tree-node.level-2::before,
+.tree-node.level-2::after,
+.tree-node.level-3::before,
+.tree-node.level-3::after {
+    display: none;
+}
+
+/* hover effect */
+.tree-node:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* conteudo do no */
+.node-header {
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.node-name {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.node-footer {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.85;
+}
+
+/* linhas conectoras */
+.tree-line {
+    position: absolute;
+    background: #CCCCCC;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.tree-line.visible {
+    opacity: 1;
+}
+
+.tree-line.vertical {
+    width: 2px;
+}
+
+.tree-line.horizontal {
+    height: 2px;
+}
+
+/* indicador de expansao */
+/* remover indicador de expansao */
+
+/* mensagem de arvore vazia */
+.empty-tree {
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+}
+
+.empty-tree-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+/* botao para popular dados exemplo */
+.populate-btn {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.populate-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.populate-btn:active {
+    transform: translateY(0);
+}
