@@ -7,8 +7,110 @@
     align-items: center;
     justify-content: flex-end;
     padding: 40px;
-    padding-bottom: 210px; 
+    padding-bottom: 120px; 
     box-sizing: border-box;
+}
+
+/* botao ver lista */
+.ver-lista-wrapper {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 100;
+}
+
+.ver-lista-btn {
+    padding: 5px 16px;
+    background: #E9E9E9;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #8A8A8A;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.ver-lista-btn:hover,
+.ver-lista-btn.active {
+    background: #0D5DD4;
+    color: white;
+}
+
+/* opcoes da lista */
+.lista-options {
+    margin-top: 8px;
+    margin-left: 33px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lista-option-btn {
+    padding: 3px 11px;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.lista-option-btn::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid #E9E9E9;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+.lista-option-btn.categoria-btn {
+    background: #EBE175;
+    color: #7E7615;
+}
+
+.lista-option-btn.categoria-btn:hover {
+    background: #E5D966;
+}
+
+.lista-option-btn.produtos-btn {
+    background: #8DD4E4;
+    color: #195663;
+}
+
+.lista-option-btn.produtos-btn:hover {
+    background: #7EC9DB;
 }
 
 /* abas fixas embaixo */
@@ -72,41 +174,51 @@
 
 /* lista de cadastrados */
 .cadastrados-container {
-    position: absolute;
-    bottom: 210px;
-    width: 100%;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
     max-width: 800px;
     display: none;
 }
 
 .cadastrados-header {
-    font-size: 2em;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: #000000;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #333;
-    color: #333;
+    border-bottom: 2px solid #E9E9E9;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .cadastrados-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 400px;
+    max-height: calc(100vh - 280px);
     overflow-y: auto;
+    padding-bottom: 20px;
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* internet explorer e edge */
+}
+
+.cadastrados-list::-webkit-scrollbar {
+    display: none; /* chrome, safari e opera */
 }
 
 .cadastrado-item {
-    padding: 20px;
-    margin: 10px 0;
-    background: #F5F5F5;
-    border-radius: 10px;
-    transition: all 0.3s;
-}
-
-.cadastrado-item:hover {
-    background: #EEE;
-    transform: translateX(5px);
+    width: 700px;
+    padding: 11px;
+    background: #F8F8F8;
+    border-radius: 14px;
+    margin-bottom: 10px;
 }
 
 .cadastrado-header {
@@ -116,16 +228,140 @@
     margin-bottom: 10px;
 }
 
-.cadastrado-nome {
-    font-size: 1.1em;
+.cadastrado-label {
+    color: black;
+    font-size: 16px;
     font-weight: 600;
-    color: #333;
+    font-family: 'Inter', sans-serif;
 }
 
 .cadastrado-info {
-    font-size: 0.9em;
     color: #666;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
     margin-top: 5px;
+}
+
+.cadastrado-hierarchy-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cadastrado-hierarchy-label {
+    color: #ACACAC;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+.cadastrado-hierarchy {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cadastrado-hierarchy-value {
+    color: #979797;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+.hierarchy-arrow {
+    width: 11px;
+    height: 6px;
+    border: 1.5px solid #979797;
+    border-radius: 0;
+}
+
+/* menu de 3 pontos */
+.menu-dots-wrapper {
+    position: relative;
+}
+
+.menu-dots-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1px;
+    width: 3px;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    background: #979797;
+    border-radius: 9999px;
+}
+
+.menu-actions {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    border-radius: 14px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 120px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menu-actions.show {
+    display: flex;
+}
+
+.menu-action-btn {
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-action-btn.editar {
+    color: #0D5DD4;
+}
+
+.menu-action-btn.editar:hover {
+    background: #F0F4FF;
+}
+
+.menu-action-btn.apagar {
+    color: #FF4444;
+}
+
+.menu-action-btn.apagar:hover {
+    background: #FFF0F0;
+}
+
+.menu-action-btn.editar::before {
+    content: '✎';
+    font-size: 16px;
+}
+
+.menu-action-btn.apagar::before {
+    content: '×';
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* header do formulario */
@@ -216,4 +452,135 @@
 .btn-submit.produto {
     background: #8DD4E4;
     color: #195663;
+}
+
+/* responsividade */
+@media (max-width: 768px) {
+    .cadastro-page {
+        padding: 20px;
+        padding-bottom: 90px;
+    }
+    
+    /* ver lista */
+    .ver-lista-wrapper {
+        top: 16px;
+        left: 16px;
+    }
+    
+    .ver-lista-btn {
+        padding: 4px 14px;
+        font-size: 14px;
+    }
+    
+    .lista-options {
+        gap: 6px;
+        margin-top: 6px;
+        margin-left: 28px;
+    }
+    
+    .lista-option-btn {
+        padding: 2px 9px;
+        font-size: 11px;
+    }
+    
+    .lista-option-btn::before {
+        left: -6px;
+        border-left-width: 4px;
+        border-top-width: 3px;
+        border-bottom-width: 3px;
+    }
+    
+    /* abas */
+    .tabs-container {
+        width: 90%;
+        max-width: 400px;
+        height: auto;
+        padding: 4px;
+        gap: 4px;
+    }
+    
+    .tab-button {
+        width: calc(50% - 2px);
+        height: 80px;
+        font-size: 16px;
+    }
+    
+    /* formulario */
+    .form-container {
+        width: 90%;
+        max-width: 400px;
+        bottom: 110px;
+        padding: 16px 12px;
+    }
+    
+    .form-header-text {
+        font-size: 10px;
+    }
+    
+    .form-label {
+        font-size: 11px;
+    }
+    
+    .form-input,
+    .form-select {
+        height: 40px;
+        font-size: 13px;
+        padding: 0 12px;
+    }
+    
+    .form-textarea {
+        height: 70px;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    
+    .btn-submit {
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    /* lista de cadastrados */
+    .cadastrados-container {
+        top: 80px;
+        width: calc(100% - 40px);
+    }
+    
+    .cadastrados-header {
+        font-size: 36px;
+    }
+    
+    .cadastrados-list {
+        max-height: calc(100vh - 220px);
+    }
+    
+    .cadastrado-item {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .cadastrado-label {
+        font-size: 13px;
+    }
+    
+    .cadastrado-hierarchy-label {
+        font-size: 11px;
+    }
+    
+    .cadastrado-hierarchy-value {
+        font-size: 12px;
+    }
+    
+    .hierarchy-arrow {
+        width: 9px;
+        height: 5px;
+    }
+    
+    .menu-actions {
+        min-width: 100px;
+    }
+    
+    .menu-action-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 }

@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: flex-end; /* alinhar tudo para baixo */
     padding: 40px;
-    padding-bottom: 195px; 
+    padding-bottom: 120px; 
     box-sizing: border-box;
 }
 
@@ -15,15 +15,15 @@
 .search-input-container {
     width: 100%;
     max-width: 600px;
-    margin-bottom: 10px; /* apenas 10px de distancia */
-    position: relative; /* necessario para o position absolute do dropdown */
+    margin-bottom: 6px;
+    position: relative;
     z-index: 10;
 }
 
 .search-button {
     width: 100%;
-    padding: 20px 30px;
-    font-size: 16px;
+    padding: 16px 26px;
+    font-size: 15px;
     border: none;
     border-radius: 30px;
     background: #E8E8E8;
@@ -47,16 +47,17 @@
     width: 100%;
     background: #E8E8E8;
     border-radius: 30px;
-    padding: 20px;
-    max-height: 400px;
+    padding: 12px;
+    max-height: 300px;
     overflow-y: auto;
+    
+    /* posicionar acima do botao */
     position: fixed;
-    bottom: 275px; /* mais proximo do botao */
+    bottom: 220px;
     left: 50%;
     transform: translateX(-50%);
     max-width: 600px;
-    z-index: 100;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 5;
 }
 
 /* lista de categorias */
@@ -66,14 +67,15 @@
     margin: 0;
 }
 
+/* item da categoria */
 .category-item {
-    padding: 15px 20px;
-    margin: 5px 0;
-    border-radius: 20px;
+    padding: 12px 20px;
     cursor: pointer;
-    transition: all 0.3s;
-    color: #333;
+    transition: all 0.2s;
+    border-radius: 20px;
     font-size: 15px;
+    color: #333;
+    font-weight: 500;
 }
 
 .category-item:hover {
@@ -213,3 +215,56 @@
 .product-item:nth-child(3) { animation-delay: 0.3s; }
 .product-item:nth-child(4) { animation-delay: 0.4s; }
 .product-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* responsividade */
+@media (max-width: 768px) {
+    .search-page {
+        padding: 20px;
+        padding-bottom: 90px;
+    }
+    
+    .search-input-container {
+        max-width: 90%;
+    }
+    
+    .search-button {
+        padding: 16px 24px;
+        font-size: 14px;
+    }
+    
+    .search-results {
+        padding: 10px;
+        max-height: 250px;
+        bottom: 180px;
+    }
+    
+    .category-item {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .products-container {
+        padding: 20px;
+        gap: 16px;
+    }
+    
+    .product-item {
+        padding: 16px;
+    }
+    
+    .product-name {
+        font-size: 16px;
+    }
+    
+    .product-category {
+        font-size: 12px;
+    }
+    
+    .product-price {
+        font-size: 18px;
+    }
+    
+    .product-description {
+        font-size: 12px;
+    }
+}
