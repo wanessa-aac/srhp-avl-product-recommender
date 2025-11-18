@@ -4,4 +4,24 @@ __pycache__/
 *.pyc
 .DS_Store
 .vscode/
-.envsrhp.db
+.env
+
+# Banco de dados
+srhp.db
+data/
+*.db
+
+# Docker
+.docker/
+
+# Logs
+*.log
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
