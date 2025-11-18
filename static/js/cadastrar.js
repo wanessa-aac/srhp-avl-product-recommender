@@ -102,7 +102,7 @@ class CadastroPage {
                 <label class="form-label">categoria pai (opcional)</label>
                 <select class="form-select" id="categoriaPai">
                     <option value="">Selecione</option>
-                    ${this.categorias.map(cat => `<option value="${cat.id}">${cat.nome}</option>`).join('')}
+                    ${this.categorias.map(cat => `<option value="${cat.nome}">${cat.nome}</option>`).join('')}
                 </select>
             </div>
             
@@ -123,7 +123,7 @@ class CadastroPage {
             </div>
             
             <div class="form-field">
-                <label class="form-label">nome do produto*</label>
+                <label class="form-label">nome da categoria*</label>
                 <input type="text" class="form-input" id="produtoNome" placeholder="">
             </div>
             
@@ -131,7 +131,7 @@ class CadastroPage {
                 <label class="form-label">categoria*</label>
                 <select class="form-select" id="produtoCategoria">
                     <option value="">Selecione</option>
-                    ${this.categorias.map(cat => `<option value="${cat.id}">${cat.nome}</option>`).join('')}
+                    ${this.categorias.map(cat => `<option value="${cat.nome}">${cat.nome}</option>`).join('')}
                 </select>
             </div>
             
@@ -153,21 +153,11 @@ class CadastroPage {
     
     async cadastrarCategoria() {
         const nome = document.getElementById('categoriaNome').value.trim();
-        const categoriaPaiIdStr = document.getElementById('categoriaPai').value;
+        const categoriaPaiId = document.getElementById('categoriaPai').value;
         
         if (!nome) {
             alert('por favor, preencha o nome da categoria');
             return;
-        }
-        
-        // validar categoria_pai_id se fornecida
-        let categoriaPaiId = null;
-        if (categoriaPaiIdStr) {
-            categoriaPaiId = parseInt(categoriaPaiIdStr);
-            if (isNaN(categoriaPaiId) || categoriaPaiId <= 0) {
-                alert('por favor, selecione uma categoria pai valida');
-                return;
-            }
         }
         
         try {
@@ -179,7 +169,7 @@ class CadastroPage {
                 body: JSON.stringify({
                     nome: nome,
                     descricao: '',
-                    categoria_pai_id: categoriaPaiId
+                    categoria_pai_id: categoriaPaiId ? parseInt(categoriaPaiId) : null
                 })
             });
             
@@ -202,26 +192,12 @@ class CadastroPage {
     
     async cadastrarProduto() {
         const nome = document.getElementById('produtoNome').value.trim();
-        const categoriaIdStr = document.getElementById('produtoCategoria').value;
+        const categoriaId = document.getElementById('produtoCategoria').value;
         const preco = document.getElementById('produtoPreco').value.trim();
         const descricao = document.getElementById('produtoDescricao').value.trim();
         
-        if (!nome || !categoriaIdStr || !preco) {
+        if (!nome || !categoriaId || !preco) {
             alert('por favor, preencha todos os campos obrigatorios');
-            return;
-        }
-        
-        // validar e converter categoria_id
-        const categoriaId = parseInt(categoriaIdStr);
-        if (isNaN(categoriaId) || categoriaId <= 0) {
-            alert('por favor, selecione uma categoria valida');
-            return;
-        }
-        
-        // validar preco
-        const precoNum = parseFloat(preco);
-        if (isNaN(precoNum) || precoNum <= 0) {
-            alert('por favor, insira um preco valido maior que zero');
             return;
         }
         
@@ -233,8 +209,8 @@ class CadastroPage {
                 },
                 body: JSON.stringify({
                     nome: nome,
-                    categoria_id: categoriaId,
-                    preco: precoNum,
+                    categoria_id: parseInt(categoriaId),
+                    preco: parseFloat(preco),
                     descricao: descricao,
                     avaliacao: 0.0
                 })
@@ -278,7 +254,7 @@ class CadastroPage {
                 <label class="form-label">categoria pai (opcional)</label>
                 <select class="form-select" id="categoriaPai">
                     <option value="">Selecione</option>
-                    ${this.categorias.map(cat => `<option value="${cat.id}">${cat.nome}</option>`).join('')}
+                    ${this.categorias.map(cat => `<option value="${cat.nome}">${cat.nome}</option>`).join('')}
                 </select>
             </div>
             
@@ -299,7 +275,7 @@ class CadastroPage {
             </div>
             
             <div class="form-field">
-                <label class="form-label">nome do produto*</label>
+                <label class="form-label">nome da categoria*</label>
                 <input type="text" class="form-input" id="produtoNome" placeholder="">
             </div>
             
@@ -307,7 +283,7 @@ class CadastroPage {
                 <label class="form-label">categoria*</label>
                 <select class="form-select" id="produtoCategoria">
                     <option value="">Selecione</option>
-                    ${this.categorias.map(cat => `<option value="${cat.id}">${cat.nome}</option>`).join('')}
+                    ${this.categorias.map(cat => `<option value="${cat.nome}">${cat.nome}</option>`).join('')}
                 </select>
             </div>
             
