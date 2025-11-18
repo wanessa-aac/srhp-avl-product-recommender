@@ -1,0 +1,16 @@
+services:
+  srhp-app:
+    build: .
+    container_name: srhp-avl-product-recommender
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - srhp-network
+
+networks:
+  srhp-network:
+    driver: bridge
+
