@@ -287,3 +287,51 @@ class AVLTree:
         else:
             # Se a chave for maior, busca na sub-árvore direita
             return self._find_recursive(node.rightChild, key)
+        
+
+    def _find_node(self, node, key):
+        """
+        Retorna o objeto `AVLNode` cujo `key` corresponde ao solicitado,
+        ou `None` se não existir. Implementado como método interno para
+        permitir operações que precisam do nó (por exemplo, varredura de subárvore).
+        """
+        if not node:
+            return None
+        if key == node.key:
+            return node
+        if key < node.key:
+            return self._find_node(node.leftChild, key)
+        return self._find_node(node.rightChild, key)
+
+    def recommend(self, key):
+        """
+        Retorna uma lista de produtos recomendados para a categoria `key`.
+
+        Comportamento esperado (seguindo os testes SRHP-10):
+        - Se a `key` não existir na árvore, retorna lista vazia.
+        - Se existir, retorna os produtos da categoria e de todas as
+          subcategorias descendentes (varredura DFS a partir do nó).
+
+        A função assume que os `data` armazenados nos nós são dicionários
+        contendo a chave 'produtos' (lista). Se o formato for diferente,
+        apenas ignora e não adiciona elementos.
+        """
+        root_node = self._find_node(self.root, key)
+        if root_node is None:
+            return []
+
+        resultados = []
+
+        def dfs(n):
+            if not n:
+                return
+            data = n.data
+            # aceitar estruturas onde 'produtos' é uma lista
+            if isinstance(data, dict) and 'produtos' in data and data['produtos']:
+                resultados.extend(data['produtos'])
+            dfs(n.leftChild)
+            dfs(n.rightChild)
+
+        dfs(root_node)
+        return resultados
+    
